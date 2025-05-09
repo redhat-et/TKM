@@ -129,9 +129,16 @@ lint-fix: golangci-lint ## Run golangci-lint linter and perform fixes
 
 ##@ Build
 
-.PHONY: build
-build: manifests generate fmt vet ## Build manager binary.
-	go build -o bin/manager cmd/main.go
+.PHONY: build-tkm-operator
+build-tkm-operator: ## Build manager binary.
+	go build -o bin/tkm-operator ./cmd/tkm-operator
+
+.PHONY: build-tkm-agent
+build-tkm-agent: ## Build agent binary.
+	go build -o bin/tkm-agent ./cmd/tkm-agent
+
+.PHONY: build  ## Build binaries.
+build: manifests generate fmt vet build-tkm-operator build-tkm-agent
 
 .PHONY: run
 run: manifests generate fmt vet ## Run a controller from your host.

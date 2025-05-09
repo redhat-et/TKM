@@ -36,7 +36,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
 	tkmv1alpha1 "github.com/redhat-et/TKM/api/v1alpha1"
-	"github.com/redhat-et/TKM/internal/controller"
+	"github.com/redhat-et/TKM/internal/controllers/tkm-operator"
 	// +kubebuilder:scaffold:imports
 )
 
