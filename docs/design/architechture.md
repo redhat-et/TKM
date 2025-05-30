@@ -223,8 +223,8 @@ Each node will have one such CR to represent its status, and it will contain
 information for all kernel caches relevant to that node, organized per GPU.
 
 If the corresponding TritonKernelCache is namespace-scoped, the NodeStatus CR
-should live in the same namespace.If the corresponding TritonKernelCache is c
-luster-scoped, a cluster-scoped NodeStatus CR (TritonKernelCacheNodeStatusCluster)
+should live in the same namespace. If the corresponding TritonKernelCache is 
+cluster-scoped, a cluster-scoped NodeStatus CR (TritonKernelCacheNodeStatusCluster)
 will be used instead.
 
 While nodes themselves are not namespaced, the namespace of the NodeStatus CR
@@ -361,15 +361,15 @@ The CSI driver communicates with the TKM Agent using a local gRPC interface.
 This interaction is central to validating and tracking kernel cache usage
 for pods, and effectively plugs the Agent into the pod lifecycle.
 
-CSI Lifecycle Hooks via gRPC
+CSI Lifecycle Hooks via gRPC:
 
-Mount Request: When the CSI driver mounts a volume for a pod, it makes a
+**Mount Request**: When the CSI driver mounts a volume for a pod, it makes a
 gRPC call to the TKM Agent to validate the requested kernel cache
 (by resolved digest) for the node and GPU configuration. If the Agent
 confirms the cache is Ready and Compatible, the CSI proceeds with extraction
 and mounting.
 
-Unmount Request: Upon pod deletion or volume unmount, the CSI driver notifies
+**Unmount Request**: Upon pod deletion or volume unmount, the CSI driver notifies
 the Agent, allowing it to update internal reference counts or perform cleanup
 operations.
 
